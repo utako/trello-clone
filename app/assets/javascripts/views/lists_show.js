@@ -3,7 +3,7 @@ window.Trellino.Views.ListsShow = Backbone.View.extend({
     var renderedContent = this.template()({
       list: this.model
     });
-    this.$el.html(renderedContent);
+    this.$el.append(renderedContent);
     return this;
   },
 });

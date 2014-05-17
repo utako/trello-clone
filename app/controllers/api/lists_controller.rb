@@ -2,7 +2,7 @@ module Api
   class ListsController < ApiController
     def index
       @lists = Board.find(params[:board_id]).lists
-      render :index
+      render :json => @lists
     end
 
     def show

@@ -1,9 +1,14 @@
 window.Trellino.Collections.Lists = Backbone.Collection.extend({
+
   model: Trellino.Models.List,
   
   url: function() {
     return this.board.url() + "/lists";
   }, 
+  
+  initialize: function(model, options) {
+    this.board = options.board
+  },
   
   getOrFetch: function(id) {
     var model;
@@ -19,6 +24,6 @@ window.Trellino.Collections.Lists = Backbone.Collection.extend({
       return model;
     }
   },
-});
 
-window.Trellino.Collections.lists = new Trellino.Collections.Lists();
+  comparator: "rank",
+});
