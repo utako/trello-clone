@@ -1,4 +1,4 @@
-window.Trellino.Views.listsNew = Backbone.View.extend({
+window.Trellino.Views.listsNew = Backbone.CompositeView.extend({
   template: JST["lists/new"],
   
   events: {
@@ -6,7 +6,7 @@ window.Trellino.Views.listsNew = Backbone.View.extend({
   },
   
   render: function() {
-    var renderedContent = this.template();
+    var renderedContent = this.template({ board: this.model });
     this.$el.html(renderedContent);
     return this;
   },
@@ -14,17 +14,15 @@ window.Trellino.Views.listsNew = Backbone.View.extend({
   submit: function(event) {
     event.preventDefault();
     view = this;
-    debugger
     var inputData = $(event.currentTarget).serializeJSON()["list"];
     var newList = new Trellino.Models.List(inputData);
-    newList.save({}, {
+    this.model.lists().create(newList, {
       success: function(response) {
-        var id = response.get("id");
-        Trellino.Collections.lists.add(newList);
-        view.$('input[name=list\\[title\\]]').val("");
-        view.renderPreview();
+        view.$('input[name=list\\[title\\]]').val("");  
+        view.$('input[name=list\\[rank\\]]').val("");  
+        Backbone.history.navigate("#/boards/"+newList.attributes.board_id, {trigger: true});
       }
     });
-  }
+  },
 });
 

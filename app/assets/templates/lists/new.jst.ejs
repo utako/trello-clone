@@ -1,11 +1,8 @@
-<h1>Add a New List</h1>
+<h3>Add List</h3>
 <form>
-  <input type="hidden" name="list[board_id]" value="">
   <label>Item<br>
+    <input type="hidden" name="list[board_id]" value="<%= board.id %>">
     <input type="text" name="list[title]">
   </label><br><br>
-  <label>Rank<br>
-    <input type="text" name="list[rank]">
-  </label><br><br>
-  <input type="submit" value="Create List" class="btn btn-default">
+  <input type="submit" value="Add List" class="btn btn-default">
 </form>

@@ -13,8 +13,8 @@ Trellino::Application.routes.draw do
     end
     resources :todo_items, only: [:show, :update, :destroy]
     resources :card_assignments, only: :destroy
+    resources :board_assignments, only: :create
   end
-  
   resource :session, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create, :destroy]
 end

@@ -1,9 +1,12 @@
-window.Trellino.Views.ListsShow = Backbone.View.extend({
+window.Trellino.Views.listsShow = Backbone.View.extend({
+  template: JST["lists/show"],
+  
   render: function() {
-    var renderedContent = this.template()({
+    debugger
+    var renderedContent = this.template({
       list: this.model
     });
-    this.$el.append(renderedContent);
+    this.$el.html(renderedContent);
     return this;
   },
 });
