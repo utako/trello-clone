@@ -21,9 +21,12 @@ window.Trellino.Models.Board = Backbone.Model.extend({
   
   parse: function(response) {
     if (response.lists) {
-      var list = new Trellino.Models.List();
       this.lists().set(response.lists, { parse: true });
       delete response.lists;
+    }
+    if (response.members) {
+      this.members().set(response.members, {parse: true});
+      delete response.members;
     }
     return response;
   },

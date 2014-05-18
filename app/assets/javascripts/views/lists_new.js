@@ -14,8 +14,10 @@ window.Trellino.Views.listsNew = Backbone.CompositeView.extend({
   submit: function(event) {
     event.preventDefault();
     view = this;
+    var rank = this.model.lists().last().get("rank");
     var inputData = $(event.currentTarget).serializeJSON()["list"];
     var newList = new Trellino.Models.List(inputData);
+    newList.set("rank", rank);
     this.model.lists().create(newList, {
       success: function(response) {
         view.$('input[name=list\\[title\\]]').val("");  

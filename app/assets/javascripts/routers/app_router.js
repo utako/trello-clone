@@ -3,7 +3,6 @@ window.Trellino.Routers.AppRouter = Backbone.Router.extend({
     "": "boardsIndex",
     "boards/new": "boardsNew",
     "boards/:id": "boardsShow",
-    "boards/:id/lists/new": "listsNew",
   },
   
   boardsIndex: function() {
@@ -26,12 +25,6 @@ window.Trellino.Routers.AppRouter = Backbone.Router.extend({
     });
     this._swapView(showView);
   },
-  
-  // listsNew: function(id) {
-  //   var showModel = Trellino.Collections.boards.getOrFetch(id);
-  //   var newView = new Trellino.Views.listsNew( {model: showModel} );
-  //   this._swapView(newView);
-  // },
     
   _swapView: function(view) {
     if (this.currentView) {

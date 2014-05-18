@@ -3,12 +3,10 @@ window.Trellino.Views.boardsShow = Backbone.CompositeView.extend({
   
   initialize: function (){
     this.listenTo(this.model, "sync", this.render);
-    this.listenTo(this.model, "add", this.addList);
-    // this.listenTo(this.model.lists(), "sync", this.addAllLists);
-    // this.listenTo(this.model.members(), "sync", this.addAllMembers);
+    this.listenTo(this.model.lists(), "add", this.addList);
+    this.listenTo(this.model.members(), "add", this.addMember);
     this.model.lists().each(this.addList.bind(this));
-    // this.model.members().each(this.addMember.bind(this));
-    debugger
+    this.model.members().each(this.addMember.bind(this));
 
     var listNewView = new Trellino.Views.listsNew({
       model: this.model
@@ -21,12 +19,12 @@ window.Trellino.Views.boardsShow = Backbone.CompositeView.extend({
     var assignmentShowView = new Trellino.Views.assignmentsShow({
       model: this.model
     });
-    // this.addSubview(".board-members", assignmentShowView);
-    // var assignmentShowView = new Trellino.Views.assignmentsShow({
-    //   model: this.model
-    // });
     this.renderSubview();
   },
+  
+  events: {
+    "click button.destroy": "destroy"
+  }, 
   
   addList: function(list) {
     var listsShowView = new Trellino.Views.listsShow({
@@ -35,21 +33,13 @@ window.Trellino.Views.boardsShow = Backbone.CompositeView.extend({
     this.addSubview(".lists", listsShowView);
     listsShowView.render();
   },
-  
-  addAllLists: function() {
-    this.model.lists().each(addList);
-  },
-  
+
   addMember: function(member) {
     var membersShowView = new Trellino.Views.assignmentsShow({
       model: member
     });
-    this.addSubview(".board-members", assignmentShowView);
+    this.addSubview(".board-members", membersShowView);
     membersShowView.render();
-  },
-  
-  addAllMembers: function() {
-    this.model.members().each(addMember);
   },
   
   render: function() {
@@ -61,5 +51,13 @@ window.Trellino.Views.boardsShow = Backbone.CompositeView.extend({
     this.renderSubview();
     return this;
   },
+  
+  destroy: function() {
+    this.model.destroy({
+      success: function() {
+        Backbone.history.navigate("/#", {trigger: true});
+      }
+    });
+  }
 
 });

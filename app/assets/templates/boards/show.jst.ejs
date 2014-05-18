@@ -1,16 +1,11 @@
-<h1><%= board.escape('title') %> <button class="btn btn-danger">Delete</button></h1>
+<h1><%= board.escape('title') %> <button class="destroy btn btn-danger">Delete</button></h1>
 <br>
-
 <div class="row">
-    <!-- <ul>
-    <h3>Lists</h3>
-    <br>
-      <% lists.each(function(list) { %>
-      <li class="col-xs-3"><%= list.escape('title') %> : <%= list.escape('rank') %></li>
-      <% }) %>
-    </ul> -->
-    <div class="lists">
-    </div>
+  <h3>Lists</h3><br>
+</div>
+<div class="row">
+  <div class="lists">
+  </div>
 </div>
 <br>
 <div class="row">
@@ -23,6 +18,7 @@
     </div>
   </div>
   <div class="col-xs-2 col-xs-offset-1">
+    <h3>Members</h3>
     <div class="board-members">
     </div>
   </div>
