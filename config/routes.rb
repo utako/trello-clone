@@ -3,12 +3,12 @@ Trellino::Application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :boards, except: [:new, :edit] do
-      resources :lists, only: [:index, :show, :create, :update, :destroy]
+      resources :lists, only: [:index, :show, :update]
     end
-    resources :lists, only: [:show, :update, :destroy] do
-      resources :cards, only: [:create, :index]
+    resources :lists, only: [:show, :update, :destroy, :create] do
+      resources :cards, only: [:index]
     end
-    resources :cards, only: [:show, :update, :destroy] do
+    resources :cards, only: [:create, :show, :update, :destroy] do
       resources :todo_items, only: [:create, :index]
     end
     resources :todo_items, only: [:show, :update, :destroy]

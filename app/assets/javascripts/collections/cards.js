@@ -3,11 +3,10 @@ window.Trellino.Collections.Cards = Backbone.Collection.extend({
   model: Trellino.Models.Card,
   
   url: function() {
-    return this.list.url() + "/cards";
+    return this.list.urlRoot() + "/cards";
   }, 
   
   initialize: function(model, options) {
-    this.board = options.board;
     this.list = options.list;
   },
   

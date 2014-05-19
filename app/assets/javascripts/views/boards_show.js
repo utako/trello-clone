@@ -4,6 +4,7 @@ window.Trellino.Views.boardsShow = Backbone.CompositeView.extend({
   initialize: function (){
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.model.lists(), "add", this.addList);
+    this.listenTo(this.model.lists(), "destroy", this.removeList);
     this.listenTo(this.model.members(), "add", this.addMember);
     this.model.lists().each(this.addList.bind(this));
     this.model.members().each(this.addMember.bind(this));
@@ -33,7 +34,14 @@ window.Trellino.Views.boardsShow = Backbone.CompositeView.extend({
     this.addSubview(".lists", listsShowView);
     listsShowView.render();
   },
-
+  
+  removeList: function(list) {
+    var listsShowView = _(this.subviews()[".lists"]).find(function (subview) {
+      return subview.model == list;
+    });
+    this.removeSubview(".lists", listsShowView);
+  },
+  
   addMember: function(member) {
     var membersShowView = new Trellino.Views.assignmentsShow({
       model: member

@@ -14,3 +14,41 @@
  */
 
 @import "bootstrap";
+
+.list {
+  position: relative;
+  min-height: 300px;
+  padding: 8px 16px 8px;
+  margin: 16px;
+  border: solid 1px;
+  border-color: #E6E6E6;
+  box-shadow: 1px 1px 1px #888888;
+  float: left;
+  border-radius: 3px;  
+}
+
+.list .btns {
+  position: absolute;
+  bottom: 16px;
+}
+
+.card {
+  padding: 6px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px #888888;
+  margin: 6px;
+  background-color: #FCFCFC;
+}
+
+.card-form {
+  position: absolute;
+  bottom: 16px;
+}
+
+.btn-delcard {
+  border-radius: 6px;
+  color: white;
+//  box-shadow: 1px 1px 1px #888888;
+//  margin: 6px;
+  background-color: #E37B7B;
+}

@@ -1,2 +1,10 @@
-<li class="col-xs-3"><%= list.escape('title') %></li>
-<div class ="cards"></div>
+<div class="list col-xs-3">
+  <h4><%= list.escape('title') %></h4>
+  <div class="cards"></div>
+  <div class="card-new">
+    <div class="btns">
+      <button class="add btn btn-info">Add Card</button>
+      <button class="list-destroy btn btn-danger">Delete List</button>
+    </div>
+  </div>
+</div>

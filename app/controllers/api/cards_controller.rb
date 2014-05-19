@@ -37,7 +37,7 @@ module Api
 
     def destroy
       Card.find(params[:id]).try(:destroy)
-      render json: nil
+      render json: {}
     end
 
     private
