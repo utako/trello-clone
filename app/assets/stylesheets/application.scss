@@ -15,6 +15,20 @@
 
 @import "bootstrap";
 
+.board {
+  position: relative;
+  min-height: 100px;
+  padding: 8px 16px 8px;
+  margin: 16px;
+  border: solid 1px;
+  border-color: #E6E6E6;
+  box-shadow: 1px 1px 1px #888888;
+  float: left;
+  border-radius: 3px;  
+  text-align: center;
+  font-size: 20px;
+}
+
 .list {
   position: relative;
   min-height: 300px;

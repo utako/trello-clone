@@ -1,6 +1,10 @@
-<h1>Your Boards Index</h1>
-<ul>
-<% boards.each(function (board) { %> 
-  <li><a href="/#/boards/<%= board.id %>"><%= board.escape('title') %></a></li>
-<% }); %>
-</ul>
+<h1>My Boards</h1>
+<div class="row">
+  <% boards.each(function (board) { %> 
+    <a href="/#/boards/<%= board.id %>">
+      <div class="board col-xs-3">
+        <%= board.escape('title') %>
+      </div>                        
+    </a>
+  <% }); %>
+</div>
