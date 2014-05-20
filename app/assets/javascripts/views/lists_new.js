@@ -13,14 +13,15 @@ window.Trellino.Views.listsNew = Backbone.CompositeView.extend({
   
   submit: function(event) {
     event.preventDefault();
-    view = this;
+    var view = this;
+    var $form = $(event.currentTarget);
     var rank;
     if (this.model.lists().last()) {
-      rank = this.model.lists().last().get("rank");
+      rank = this.model.lists().last().get("rank") + 1;
     } else {
-      rank = "1";
+      rank = 0;
     }
-    var inputData = $(event.currentTarget).serializeJSON()["list"];
+    var inputData = $form.serializeJSON()["list"];
     var newList = new Trellino.Models.List(inputData);
     newList.set("rank", rank);
     this.model.lists().create(newList, {
@@ -28,6 +29,9 @@ window.Trellino.Views.listsNew = Backbone.CompositeView.extend({
         view.$('input[name=list\\[title\\]]').val("");  
         view.$('input[name=list\\[rank\\]]').val("");  
         Backbone.history.navigate("#/boards/"+newList.attributes.board_id, {trigger: true});
+      },
+      error: function() {
+        $form.addClass('has-error');
       }
     });
   },

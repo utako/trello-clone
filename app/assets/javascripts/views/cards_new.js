@@ -17,9 +17,9 @@ window.Trellino.Views.cardsNew = Backbone.View.extend({
     event.preventDefault();
     view = this;
     if (this.model.cards().last()) {
-      rank = this.model.cards().last().get("rank");
+      rank = this.model.cards().last().get("rank") + 1;
     } else {
-      rank = "1";
+      rank = 0;
     }
     var listID = this.model.get('id');
     var boardID = this.model.get('board_id');

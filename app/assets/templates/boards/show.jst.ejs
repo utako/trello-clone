@@ -1,9 +1,14 @@
-<h1><%= board.escape('title') %> <button class="destroy btn btn-danger">Delete</button></h1>
+<div id='overlay' class="hide"></div>
+<div id='modal' class="hide">
+    <div id='modal-content' class="hide">No JavaScript Yet!</div>
+    <a href="#" id='close'><button class="btn-md"><span class='glyphicon glyphicon-remove'></span></button></a>
+</div>
+
+<h1><%= board.escape('title') %> <button class="destroy btn btn-danger">Delete Board</button></h1>
 <br>
 <h3>Lists</h3><br>
+<ul class="lists"></ul>
 <div class="row">
-  <div class="lists">
-  </div>
 </div>
 <br>
 <div class="row">

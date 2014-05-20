@@ -2,7 +2,7 @@
 <div class="row">
   <% boards.each(function (board) { %> 
     <a href="/#/boards/<%= board.id %>">
-      <div class="board col-xs-3">
+      <div class="board">
         <%= board.escape('title') %>
       </div>                        
     </a>

@@ -1,6 +1,10 @@
 window.Trellino.Views.listsShow = Backbone.CompositeView.extend({
   template: JST["lists/show"],
   
+  tagName: "li",
+  
+  className: "list",
+  
   initialize: function() {
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.model.cards(), "add", this.addCard);
@@ -9,9 +13,18 @@ window.Trellino.Views.listsShow = Backbone.CompositeView.extend({
     this.renderSubview();
   },
   
+  attributes: function() {
+    var rank = this.model.get('rank');
+    var id = this.model.get('id');
+    return { 
+      "data-rank": rank,
+      "data-id": id
+    }
+  },
+  
   events: {
     "click button.add": "addNewCardView",
-    "click button.list-destroy": "destroy"
+    "click button.list-destroy": "destroy",
   },
   
   render: function() {
@@ -21,6 +34,11 @@ window.Trellino.Views.listsShow = Backbone.CompositeView.extend({
     });
     this.$el.html(renderedContent);
     this.renderSubview();
+    this.$('.cards').sortable({
+      connectWith: '.cards',
+      placeholder: 'card-ui-placeholder',
+    });
+    this.$('.cards').disableSelection();  
     return this;
   },
   

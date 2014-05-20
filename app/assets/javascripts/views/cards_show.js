@@ -1,9 +1,24 @@
 window.Trellino.Views.cardsShow = Backbone.View.extend({
   template: JST["cards/show"],
+  
+  attributes: function() {
+    var rank = this.model.get('rank');
+    var id = this.model.get('id');
+    var listID = this.model.collection.list.id;
+    return { 
+      "data-rank": rank,
+      "data-id": id,
+      "data-list-id": listID
+    }
+  },
     
+  tagName: "li",
+  
+  className: "card",
+  
   events: {
-    "mouseenter .card": "toggleCard",
-    "mouseleave .card": "toggleCard",
+    "mouseenter .cardsub": "toggleCard",
+    "mouseleave .cardsub": "toggleCard",
     "click button.card-destroy": "destroyCard"
   },
 
@@ -19,7 +34,8 @@ window.Trellino.Views.cardsShow = Backbone.View.extend({
     var renderedContent = this.template({
       card: this.model
     });
-    this.$el.html(renderedContent);
+    this.$el.html(renderedContent);    
     return this;
   },
+
 });

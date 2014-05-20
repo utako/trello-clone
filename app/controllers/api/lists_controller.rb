@@ -1,7 +1,9 @@
 module Api
   class ListsController < ApiController
     def index
+      fail
       @lists = Board.find(params[:board_id]).lists
+      @lists.sort! { |a,b| b.rank <=> a.rank }
       render :json => @lists
     end
 

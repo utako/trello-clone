@@ -1,6 +1,8 @@
 window.Trellino.Models.List = Backbone.Model.extend({
+  
   urlRoot: "/api/lists",
   
+
   cards: function() {
     if (!this._cards) {
       this._cards = new Trellino.Collections.Cards([], {list: this});
